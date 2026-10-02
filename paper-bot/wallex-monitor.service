@@ -1,0 +1,27 @@
+[Unit]
+Description=Wallex paper market monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=trader
+Group=trader
+WorkingDirectory=/home/trader/trading-bot
+Environment=PYTHONUNBUFFERED=1
+Environment=TOP_N=100
+Environment=INTERVAL_SECONDS=300
+ExecStart=/usr/bin/python3 /home/trader/trading-bot/monitor.py
+Restart=always
+RestartSec=10
+Nice=10
+MemoryMax=256M
+CPUQuota=50%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/trader/trading-bot/data
+
+[Install]
+WantedBy=multi-user.target
