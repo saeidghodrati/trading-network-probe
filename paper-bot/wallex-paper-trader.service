@@ -1,0 +1,18 @@
+[Unit]
+Description=Wallex paper trader
+After=wallex-monitor.service
+
+[Service]
+Type=oneshot
+User=trader
+Group=trader
+WorkingDirectory=/home/trader/trading-bot
+ExecStart=/usr/bin/python3 /home/trader/trading-bot/paper_trader.py
+Nice=10
+MemoryMax=128M
+CPUQuota=25%
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/trader/trading-bot/data
