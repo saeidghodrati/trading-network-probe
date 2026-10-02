@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Wallex paper trader every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+AccuracySec=15s
+Persistent=true
+Unit=wallex-paper-trader.service
+
+[Install]
+WantedBy=timers.target
